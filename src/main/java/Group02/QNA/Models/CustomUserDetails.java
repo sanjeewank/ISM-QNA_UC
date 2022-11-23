@@ -8,9 +8,9 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails{
 
 
-    private  user user;
+    private User user;
 
-    public CustomUserDetails(user User){
+    public CustomUserDetails(User User){
         super();
         this.user=User;
     }
@@ -28,6 +28,10 @@ public class CustomUserDetails implements UserDetails{
     @Override
     public String getUsername() {
         return user.getUserName();
+    }
+
+    public String getFullName() {
+        return user.getFirstName() + " " + user.getLastName();
     }
 
     @Override
