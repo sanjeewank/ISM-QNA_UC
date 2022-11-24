@@ -20,16 +20,11 @@
           <div class="answers" th:each="ans: ${allAnswers}">
             <p th:text="${ans.content}"></p>
             <div>
-              <span th:if="${ranks}.size==0">
-                 <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
-              </span>
-
-                <span th:each="ranked: ${ranks}">
-
-                     <span th:if="ranked.answer.id!=ans.id">
-                        <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
-
-                     </span>
+                <span th:each="ranked: ${ranks}" th:if="${ranked.answer.id}!=${ans.id}">
+                    <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
+                </span>
+                <span th:if="${ranks.empty}">
+                  <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
                 </span>
             </div>
           </div>

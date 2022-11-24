@@ -13,4 +13,6 @@ public interface RankRepository extends JpaRepository<Rank,Integer> {
     List<Rank> findAllByAnswer(Answer answer);
     List<Rank> findAllByUser(User user);
 
+    Rank findByAnswer(Answer answer);
+
 }

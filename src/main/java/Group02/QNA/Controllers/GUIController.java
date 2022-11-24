@@ -3,6 +3,7 @@ package Group02.QNA.Controllers;
 
 import Group02.QNA.Models.*;
 import Group02.QNA.Repository.*;
+import Group02.QNA.Services.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,11 @@ public class GUIController {
 
     @Autowired
     private RankRepository rankRepository;
+
+    @Autowired
+    private RankService rankService;
+
+
 
     @GetMapping(value = "/")
     public String getHomePage(){
@@ -112,22 +118,7 @@ public class GUIController {
 
     @GetMapping(value = "AnswerRank/{id}")
     public String answerRank(final ModelMap model,@ModelAttribute Rank rank, @PathVariable int id,Principal principal){
-        Answer answer=answerRepository.findById(id);
-        User user=userRepo.findByUserName(principal.getName());
-
-        List<Rank> ranks =rankRepository.findAllByUser(userRepo.findByUserName(principal.getName()));
-        int dummy = 0;
-        for(int i=0;i<ranks.size();i++){
-            if (ranks.get(i).getAnswer() == answer){
-                dummy = dummy+1;
-            };
-        }
-        if (dummy==0){
-            rank.setIsRanked(Boolean.TRUE);
-            rank.setAnswer(answer);
-            rank.setUser(user);
-            rankRepository.save(rank);
-        }
+        rankService.saveRank(id,principal,rank);
         return "index";
     }
 }
