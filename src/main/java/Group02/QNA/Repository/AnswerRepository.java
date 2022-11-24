@@ -14,4 +14,8 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     Answer findById(int Id);
 
     List<Answer> findAllByQuestion(Question question);
+
+    List<Answer> findAnswersByAuthor(String user);
+
+
 }

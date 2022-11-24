@@ -4,6 +4,7 @@ package Group02.QNA.Controllers;
 import Group02.QNA.Models.*;
 import Group02.QNA.Repository.*;
 import Group02.QNA.Services.RankService;
+import Group02.QNA.Services.TopRankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,8 @@ public class GUIController {
     @Autowired
     private RankService rankService;
 
+    @Autowired
+    private TopRankService topRankService;
 
 
     @GetMapping(value = "/")
@@ -71,6 +74,7 @@ public class GUIController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("questions", questionRepository.findAll());
         model.addAttribute("question", question);
+        model.addAttribute("rankings",topRankService.CalculateRank());
         return "AppHome";
     }
 
@@ -109,9 +113,13 @@ public class GUIController {
         ans.setQuestion(question);
         answerRepository.save(ans);
         Answer answer=new Answer();
+        Rank rank=new Rank();
         answer.setQuestion(question);
         model.addAttribute("question",question);
         model.addAttribute("answer",answer);
+        model.addAttribute("rank",rank);
+        model.addAttribute("ranks",rankRepository.findAllByUser(userRepo.findByUserName(principal.getName())));
+        model.addAttribute("userid",userRepo.getUserId(principal.getName()));
         model.addAttribute("allAnswers",answerRepository.findAllByQuestion(question));
         return "Question";
     }

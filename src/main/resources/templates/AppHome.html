@@ -51,7 +51,14 @@
                         <h6 th:text="${QS.content}"></h6>
                     </div>
                 </div>
-                <div class="col-2">Rankings</div>
+                <div class="col-2">
+                    <h3>Rankings</h3>
+                    <hr>
+                    <div class="ranking" th:each="rank: ${rankings}">
+                        <h6 th:text="${rank.user.firstName}+' '+${rank.user.lastName}"></h6>
+                        <h6 th:text="${rank.Score}"></h6>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

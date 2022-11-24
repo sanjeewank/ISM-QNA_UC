@@ -57,3 +57,11 @@ body{
     font-size: 12px;
     font-weight: bold;
 }
+.ranking{
+    border: black solid 1px;
+    padding: 5px;
+    margin-top: 15px;
+    background-color:aqua;
+    text-align: center;
+    font-weight: bolder;
+}

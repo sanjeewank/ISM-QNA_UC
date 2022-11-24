@@ -15,4 +15,8 @@ public interface RankRepository extends JpaRepository<Rank,Integer> {
 
     Rank findByAnswer(Answer answer);
 
+
+
+
+
 }
