@@ -19,6 +19,9 @@
           </div>
           <div class="answers" th:each="ans: ${allAnswers}">
             <p th:text="${ans.content}"></p>
+            <div th:if="${rank.isRanked == null}">
+              <a href="#"  class="btn btn-info">Like</a>
+            </div>
           </div>
           <div class="answer">
             <form action="#" th:action="@{'/question/'+ ${question.id}}" th:object="${answer}" method="post">

@@ -10,7 +10,21 @@
     <div class="row">
         <div class="box">
             <div class="row">
-                <div class="col-2">Categories</div>
+                <div class="col-12">
+                    <div class="navigation">
+                        <p class="login_user">Welcome [[${#request.userPrincipal.principal.fullName}]]</p>
+                        <a href="#" th:href="@{'/logout'}" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <h3>Categories</h3>
+                    <hr>
+                    <div class="cat" th:each="category: ${categories}">
+                        <h6 th:text="${category.id}"></h6>
+                    </div>
+                </div>
                 <div class="col-8">
                     <div class="ask">
                         <p>Ask Your Question</p>

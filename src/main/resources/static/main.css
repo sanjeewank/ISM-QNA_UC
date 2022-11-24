@@ -37,3 +37,23 @@ body{
     border: black solid 1px;
     padding: 5px;
 }
+
+.cat{
+    border: black solid 1px;
+    padding: 5px;
+    margin-top: 15px;
+    background-color: antiquewhite;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.navigation{
+    background-color: #e3e6f0;
+    padding: 5px;
+    margin-bottom: 30px;
+    text-align: right;
+}
+.login_user{
+    font-size: 12px;
+    font-weight: bold;
+}

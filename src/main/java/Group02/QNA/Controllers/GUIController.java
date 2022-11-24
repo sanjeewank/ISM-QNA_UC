@@ -1,14 +1,8 @@
 package Group02.QNA.Controllers;
 
 
-import Group02.QNA.Models.Answer;
-import Group02.QNA.Models.Category;
-import Group02.QNA.Models.Question;
-import Group02.QNA.Models.User;
-import Group02.QNA.Repository.AnswerRepository;
-import Group02.QNA.Repository.CategoryRepository;
-import Group02.QNA.Repository.QuestionRepository;
-import Group02.QNA.Repository.UserRepository;
+import Group02.QNA.Models.*;
+import Group02.QNA.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -38,6 +32,10 @@ public class GUIController {
     @Autowired
     private AnswerRepository answerRepository;
 
+
+    @Autowired
+    private RankRepository rankRepository;
+
     @GetMapping(value = "/")
     public String getHomePage(){
         return "index";
@@ -65,7 +63,6 @@ public class GUIController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("questions", questionRepository.findAll());
         model.addAttribute("question", question);
-
         return "AppHome";
     }
 
@@ -82,12 +79,13 @@ public class GUIController {
     }
 
     @GetMapping(value = "/question/{id}")
-    public String question(final ModelMap model, @PathVariable int id) {
+    public String question(final ModelMap model, @PathVariable int id,Principal principal) {
         Question question=questionRepository.findById(id).get();
         Answer answer=new Answer();
         answer.setQuestion(question);
         model.addAttribute("question",question);
         model.addAttribute("answer",answer);
+        model.addAttribute("rank",rankRepository.findAll());
         model.addAttribute("allAnswers",answerRepository.findAllByQuestion(question));
         return "Question";
 
