@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class GUIController {
@@ -82,10 +84,13 @@ public class GUIController {
     public String question(final ModelMap model, @PathVariable int id,Principal principal) {
         Question question=questionRepository.findById(id).get();
         Answer answer=new Answer();
+        Rank rank=new Rank();
         answer.setQuestion(question);
         model.addAttribute("question",question);
         model.addAttribute("answer",answer);
-        model.addAttribute("ranks",rankRepository.findAll());
+        model.addAttribute("rank",rank);
+        model.addAttribute("ranks",rankRepository.findAllByUser(userRepo.findByUserName(principal.getName())));
+        model.addAttribute("userid",userRepo.getUserId(principal.getName()));
         model.addAttribute("allAnswers",answerRepository.findAllByQuestion(question));
         return "Question";
 
@@ -103,5 +108,26 @@ public class GUIController {
         model.addAttribute("answer",answer);
         model.addAttribute("allAnswers",answerRepository.findAllByQuestion(question));
         return "Question";
+    }
+
+    @GetMapping(value = "AnswerRank/{id}")
+    public String answerRank(final ModelMap model,@ModelAttribute Rank rank, @PathVariable int id,Principal principal){
+        Answer answer=answerRepository.findById(id);
+        User user=userRepo.findByUserName(principal.getName());
+
+        List<Rank> ranks =rankRepository.findAllByUser(userRepo.findByUserName(principal.getName()));
+        int dummy = 0;
+        for(int i=0;i<ranks.size();i++){
+            if (ranks.get(i).getAnswer() == answer){
+                dummy = dummy+1;
+            };
+        }
+        if (dummy==0){
+            rank.setIsRanked(Boolean.TRUE);
+            rank.setAnswer(answer);
+            rank.setUser(user);
+            rankRepository.save(rank);
+        }
+        return "index";
     }
 }

@@ -12,4 +12,5 @@ import java.util.List;
 public interface RankRepository extends JpaRepository<Rank,Integer> {
     List<Rank> findAllByAnswer(Answer answer);
     List<Rank> findAllByUser(User user);
+
 }
