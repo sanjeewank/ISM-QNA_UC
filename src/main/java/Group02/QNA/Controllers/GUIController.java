@@ -85,7 +85,7 @@ public class GUIController {
         answer.setQuestion(question);
         model.addAttribute("question",question);
         model.addAttribute("answer",answer);
-        model.addAttribute("rank",rankRepository.findAll());
+        model.addAttribute("ranks",rankRepository.findAll());
         model.addAttribute("allAnswers",answerRepository.findAllByQuestion(question));
         return "Question";
 

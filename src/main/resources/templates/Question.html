@@ -19,8 +19,10 @@
           </div>
           <div class="answers" th:each="ans: ${allAnswers}">
             <p th:text="${ans.content}"></p>
-            <div th:if="${rank.isRanked == null}">
-              <a href="#"  class="btn btn-info">Like</a>
+            <div>
+              <span th:if="${ranks}.contain()">
+                <a href="#"  class="btn btn-info">Like</a>
+              </span>
             </div>
           </div>
           <div class="answer">
