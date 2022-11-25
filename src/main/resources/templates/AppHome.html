@@ -28,7 +28,7 @@
                 <div class="col-8">
                     <div class="ask">
                         <p>Ask Your Question</p>
-                        <form action="#" th:action="@{/questions/ask}" th:object="${question}" method="post">
+                        <form action="#" th:action="@{'/app/questions/ask'}" th:object="${question}" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control"  placeholder="Title" th:field="*{title}">
                             </div>
@@ -46,7 +46,7 @@
                         </form>
                     </div>
                     <div class="questions" th:each="QS: ${questions}">
-                        <a href="#" th:href="@{'/question/'+ ${QS.id}}"><h3 th:text="${QS.title}"></h3></a>
+                        <a href="#" th:href="@{'/app/question/'+ ${QS.id}}"><h3 th:text="${QS.title}"></h3></a>
                         <p th:text="${QS.author}"></p>
                         <h6 th:text="${QS.content}"></h6>
                     </div>

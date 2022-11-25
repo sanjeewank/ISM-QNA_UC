@@ -21,15 +21,15 @@
             <p th:text="${ans.content}"></p>
             <div>
                 <span th:each="ranked: ${ranks}" th:if="${ranked.answer.id}!=${ans.id}">
-                    <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
+                    <a href="#" th:href="@{'/app/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
                 </span>
                 <span th:if="${ranks.empty}">
-                  <a href="#" th:href="@{'/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
+                  <a href="#" th:href="@{'/app/AnswerRank/'+${ans.id}}"  class="btn btn-info">Like</a>
                 </span>
             </div>
           </div>
           <div class="answer">
-            <form action="#" th:action="@{'/question/'+ ${question.id}}" th:object="${answer}" method="post">
+            <form action="#" th:action="@{'/app/question/'+ ${question.id}}" th:object="${answer}" method="post">
               <div class="form-group">
                 <input type="text" class="form-control"  placeholder="write your answer" th:field="*{content}">
               </div>
