@@ -14,10 +14,15 @@
         <div class="col-8">
           <div class="question">
             <H3 th:text="${question.title}"></H3>
+            Author: <span th:text="${question.author}"></span> | Created: <span th:text="${question.createdAt}"></span>
             <hr>
             <h6 th:text="${question.content}"></h6>
           </div>
           <div class="answers" th:each="ans: ${allAnswers}">
+            <div class="answer_head">
+              Author: <span th:text="${ans.author}"></span> | Created: <span th:text="${ans.createdAt}"></span>
+            </div>
+            <hr>
             <p th:text="${ans.content}"></p>
             <div>
                 <span th:each="ranked: ${ranks}" th:if="${ranked.answer.id}!=${ans.id}">

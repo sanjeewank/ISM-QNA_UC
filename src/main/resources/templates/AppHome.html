@@ -46,8 +46,10 @@
                         </form>
                     </div>
                     <div class="questions" th:each="QS: ${questions}">
-                        <a href="#" th:href="@{'/app/question/'+ ${QS.id}}"><h3 th:text="${QS.title}"></h3></a>
-                        <p th:text="${QS.author}"></p>
+                        <div class="question_head">
+                            <a href="#" th:href="@{'/app/question/'+ ${QS.id}}"><h3 th:text="${QS.title}"></h3></a>
+                           <hr>Author: <span th:text="${QS.author}"></span> | Created: <span th:text="${QS.createdAt}"></span>
+                        </div>
                         <h6 th:text="${QS.content}"></h6>
                     </div>
                 </div>

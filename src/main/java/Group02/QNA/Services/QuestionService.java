@@ -3,6 +3,7 @@ package Group02.QNA.Services;
 import Group02.QNA.Models.Answer;
 import Group02.QNA.Models.Question;
 import Group02.QNA.Models.Rank;
+import Group02.QNA.Repository.AnswerRepository;
 import Group02.QNA.Repository.QuestionRepository;
 import Group02.QNA.Repository.RankRepository;
 import Group02.QNA.Repository.UserRepository;
@@ -24,6 +25,9 @@ public class QuestionService {
     private UserRepository userRepo;
     @Autowired
     private RankRepository rankRepository;
+
+    public QuestionService(QuestionRepository questionRepository, AnswerRepository answerRepository) {
+    }
 
 
     public Question askQuestion(Question question,Principal principal){

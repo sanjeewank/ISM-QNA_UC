@@ -57,25 +57,25 @@ class TopRankServiceTest {
 
 
     }
-    @Test
-    public void topTest(){
-        user = userRepository.findByUserName("sanjeewank@gmail.com");
-        questions = questionRepository.findAllByAuthor(user.getUserName());
-        answers =  answerRepository.findAnswersByAuthor(user.getUserName());
-        ranking = rankrepository.findAllByUser(user);
-        answer_likes = rankrepository.findAllByAnswer(answers.get(0));
-        total_likes = total_likes + answer_likes.size();
-        TotalScore = questions.size()*5 + answers.size()*10 + total_likes*20;
-
-        topRank.setUser(user);
-        topRank.setScore(TotalScore);
-        rankings.add(topRank);
-
-
-        assertThat(toprankservice.CalculateRank().equals(topRankArrayList));
-
-
-    }
+//    @Test
+//    public void topTest(){
+//        user = userRepository.findByUserName("sanjeewank@gmail.com");
+//        questions = questionRepository.findAllByAuthor(user.getUserName());
+//        answers =  answerRepository.findAnswersByAuthor(user.getUserName());
+//        ranking = rankrepository.findAllByUser(user);
+//        answer_likes = rankrepository.findAllByAnswer(answers.get(0));
+//        total_likes = total_likes + answer_likes.size();
+//        TotalScore = questions.size()*5 + answers.size()*10 + total_likes*20;
+//
+//        topRank.setUser(user);
+//        topRank.setScore(TotalScore);
+//        rankings.add(topRank);
+//
+//
+//        assertThat(toprankservice.CalculateRank().equals(topRankArrayList));
+//
+//
+//    }
 
 
 

@@ -14,7 +14,7 @@ body{
 }
 .ask{
     border: black solid 1px;
-    padding: 5px;
+    padding: 20px;
     margin-bottom: 25px;
 }
 .questions{
@@ -64,4 +64,12 @@ body{
     background-color:aqua;
     text-align: center;
     font-weight: bolder;
+}
+.question_head{
+    background-color:beige;
+    padding: 5px;
+}
+
+.answer_head{
+    background-color: aqua;
 }

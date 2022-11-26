@@ -19,7 +19,7 @@ class UserServiceTest {
     @Test
     public void createUserTest(){
         User user=new User();
-        user.setUserName("abc@abc.com");
+        user.setUserName("abkjkc@abc.com");
         user.setPassword("12345678");
         user.setFirstName("ABC");
         user.setLastName("XYZ");
